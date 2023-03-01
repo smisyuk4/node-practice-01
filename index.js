@@ -8,9 +8,14 @@ app.use(cors());
 
 app.get('/weather/:country', async (req, res) => {
     const country = req.params.country
-    const data = await getWeather(country)
-    console.log("data in index.js: ", data)
-    res.json(data);
+    try{
+      const data = await getWeather(country)
+      console.log("data in index.js: ", data)
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+    
 });
 
 app.listen(process.env.PORT, () =>
