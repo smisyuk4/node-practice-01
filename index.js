@@ -1,10 +1,14 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+
 import { getWeather } from "./weather.js"
+
 
 const app = express();
 app.use(cors());
+
+
 
 app.get('/weather/:country', async (req, res) => {
     const country = req.params.country
